@@ -1,7 +1,7 @@
 const express = require('express');
 const ADODB = require('node-adodb');
 
-const connectionString = 'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\\data\\eTimeTrackLite1.mdb';
+const connectionString = 'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=I:\\data\\ChoiceCenter.mdb';
 const connection = ADODB.open(connectionString);
 
 const router = express.Router();
