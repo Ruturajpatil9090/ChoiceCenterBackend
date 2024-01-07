@@ -67,6 +67,8 @@ const employeeController = {
         Rate_Per_Hour,
         Date_Of_Joining,
         Resigned,
+        From_Time,
+        To_Time
       } = req.body;
   
       // Find the maximum Employee_Code in the database
@@ -81,6 +83,8 @@ const employeeController = {
         Basic_Salary,
         Rate_Per_Hour,
         Date_Of_Joining,
+        From_Time,
+        To_Time,
         Resigned,
       });
   
@@ -101,6 +105,8 @@ const employeeController = {
         Basic_Salary,
         Rate_Per_Hour,
         Date_Of_Joining,
+        From_Time,
+        To_Time,
         Resigned,
       } = req.body;
 
@@ -118,6 +124,8 @@ const employeeController = {
           Basic_Salary,
           Rate_Per_Hour,
           Date_Of_Joining,
+          From_Time,
+          To_Time,
           Resigned,
         },
         { transaction }
@@ -146,7 +154,7 @@ const employeeController = {
       // Start a Sequelize transaction
       transaction = await sequelize.transaction();
 
-      const { Employee_Code, Employee_Name, Basic_Salary,Rate_Per_Hour, Date_Of_Joining, Resigned } = req.body;
+      const { Employee_Code, Employee_Name, Basic_Salary,Rate_Per_Hour, Date_Of_Joining, Resigned,From_Time,To_Time } = req.body;
 
       // Find the employee to update
       const existingEmployee = await Employee.findOne({ where: { Employee_Code }, transaction });
@@ -160,6 +168,8 @@ const employeeController = {
       existingEmployee.Basic_Salary = Basic_Salary;
       existingEmployee.Rate_Per_Hour = Rate_Per_Hour;
       existingEmployee.Date_Of_Joining = Date_Of_Joining;
+      existingEmployee.From_Time = From_Time;
+      existingEmployee.To_Time = To_Time;
       existingEmployee.Resigned = Resigned;
 
       await existingEmployee.save({ transaction });

@@ -129,6 +129,7 @@ const employeeDataController = {
         totalMonthlySalary: item.totalMonthlySalary,
         daysInMonth: item.daysInMonth,
         EmployeeHours:item.EmployeeHours,
+        Late:item.Late,
       }));
   
       console.log('+++++', bulkData);

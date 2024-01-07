@@ -17,6 +17,12 @@ const Employee = db.define('Employee_Masters', {
   Date_Of_Joining: {
     type: DataTypes.DATE,
   },
+  From_Time: {
+    type: DataTypes.STRING,
+  },
+  To_Time: {
+    type: DataTypes.STRING,
+  },
   Resigned: {
     type: DataTypes.STRING,
   }

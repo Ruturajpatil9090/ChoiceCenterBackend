@@ -80,6 +80,10 @@ const EmployeeData = sequelize.define('salaryData', {
     type: DataTypes.FLOAT, 
 
   },
+  Late: {
+    type: DataTypes.STRING, 
+
+  },
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
