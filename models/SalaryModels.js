@@ -84,6 +84,14 @@ const EmployeeData = sequelize.define('salaryData', {
     type: DataTypes.STRING, 
 
   },
+  MonthlyOff: {
+    type: DataTypes.INTEGER, 
+
+  },
+  MonthlySundayOff: {
+    type: DataTypes.INTEGER, 
+
+  },
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
