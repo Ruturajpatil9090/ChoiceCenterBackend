@@ -11,6 +11,10 @@ router.get('/singlerecord/:employeeCode', EmployeeControllers.getEmployeeByEmplo
 router.post('/insert', EmployeeControllers.createEmployee);
 router.put('/updateemployee', EmployeeControllers.updateEmployee);
 router.delete('/deleteemployee/:Employee_Code', EmployeeControllers.deleteEmployee);
+router.get('/getfirstnavigationemployee', EmployeeControllers.getFirstNavigation);
+router.get('/getlastnavigationemployee', EmployeeControllers.getLastNavigation);
+router.get('/getpreviousnavigationemployee/:currentEmployeeCode', EmployeeControllers.getPreviousNavigation);
+router.get('/getnextnavigationemployee/:currentEmployeeCode', EmployeeControllers.getNextNavigation);
 
 
 //user creation routes
@@ -21,6 +25,11 @@ router.post('/insertnewuser', UserCreation.createUserCreation);
 router.put('/updateuser/:employeeCode', UserCreation.updateUserCreation);
 router.delete('/deleteuser/:employeeCode', UserCreation.deleteUserCreation);
 router.post('/loginuser', UserCreation.LoginUser);
+router.get('/getfirstnavigation', UserCreation.getFirstNavigation);
+router.get('/getlastnavigation', UserCreation.getLastNavigation);
+router.get('/getpreviousnavigation/:currentEmployeeCode', UserCreation.getPreviousNavigation);
+router.get('/getnextnavigation/:currentEmployeeCode', UserCreation.getNextNavigation);
+
 
 
 //salary routes
@@ -29,6 +38,7 @@ router.put('/editsalarydata', SalaryData.editData);
 router.get('/getlastrecord', SalaryData.getLastRecordBySalaryNo);
 router.get('/getlastsalaryno', SalaryData.getSalaryNo);
 router.get('/getAllUtility', SalaryData.getAllSalaryNoUtility);
+router.delete('/deleteRecords/:salary_no', SalaryData.deleteRecordsBySalaryNo);
 
 
 router.put('/updatesalary', SalaryData.UpdateSugarPurchase);

@@ -1,5 +1,6 @@
 const sequelize = require('../config/database');
 const Employee = require('../models/EmployeeModels'); 
+const { Op } = require('sequelize');
 
 const employeeController = {
   getAllEmployees: async (req, res) => {
@@ -225,6 +226,78 @@ const employeeController = {
       return res.status(500).json({ error: 'Internal server error' });
     }
   },
+
+
+
+  // navigation API
+getFirstNavigation: async (req, res) => {
+  try {
+    const firstUserCreation = await Employee.findOne({
+      order: [['id', 'ASC']],
+    });
+
+    res.json({ firstUserCreation });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+},
+
+getLastNavigation: async (req, res) => {
+  try {
+    const lastUserCreation = await Employee.findOne({
+      order: [['Employee_Code', 'DESC']],
+    });
+
+    res.json({ lastUserCreation });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+},
+
+getPreviousNavigation: async (req, res) => {
+  try {
+    const { currentEmployeeCode } = req.params;
+
+    const previousUserCreation = await Employee.findOne({
+      where: {
+        Employee_Code: {
+          [Op.lt]: currentEmployeeCode,
+        },
+      },
+      order: [['Employee_Code', 'DESC']],
+    });
+
+    res.json({ previousUserCreation });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+},
+
+getNextNavigation: async (req, res) => {
+  try {
+    const { currentEmployeeCode } = req.params;
+
+    const nextUserCreation = await Employee.findOne({
+      where: {
+        Employee_Code: {
+          [Op.gt]: currentEmployeeCode,
+        },
+      },
+      order: [['Employee_Code', 'ASC']],
+    });
+
+    res.json({ nextUserCreation });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+},
+
+
+
   
 
 };

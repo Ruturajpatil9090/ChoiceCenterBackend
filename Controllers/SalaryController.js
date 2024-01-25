@@ -220,6 +220,28 @@ const employeeDataController = {
       res.status(500).json({ error: 'Internal server error', message: error.message });
     }
   },
+
+
+  //delete the record on salary No
+   deleteRecordsBySalaryNo : async (req, res) => {
+    const salaryNo = req.params.salary_no;
+  
+    try {
+      // Delete records in the database based on salary_no
+      const deletedRecordsCount = await EmployeeData.destroy({
+        where: { salary_no: salaryNo },
+      });
+  
+      if (deletedRecordsCount === 0) {
+        return res.status(404).json({ error: 'No records found for deletion' });
+      }
+  
+      res.status(200).json({ message: 'Records deleted successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  },
   
 
 

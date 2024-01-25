@@ -1,5 +1,5 @@
 const sequelize = require('../config/database');
-const UserCreation = require('../models/userCreationModels'); // Assuming you have a file named UserCreationModel.js for the UserCreation model
+const UserCreation = require('../models/userCreationModels'); 
 const { Op } = require('sequelize');
 const jwt = require('jsonwebtoken');
 
@@ -212,6 +212,72 @@ const userCreationController = {
       }
     } catch (error) {
       console.error('Login error:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  },
+
+  getFirstNavigation: async (req, res) => {
+    try {
+      const firstUserCreation = await UserCreation.findOne({
+        order: [['employeeCode', 'ASC']],
+      });
+
+      res.json({ firstUserCreation });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  },
+
+  getLastNavigation: async (req, res) => {
+    try {
+      const lastUserCreation = await UserCreation.findOne({
+        order: [['employeeCode', 'DESC']],
+      });
+  
+      res.json({ lastUserCreation });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  },
+
+  getPreviousNavigation: async (req, res) => {
+    try {
+      const { currentEmployeeCode } = req.params;
+  
+      const previousUserCreation = await UserCreation.findOne({
+        where: {
+          employeeCode: {
+            [Op.lt]: currentEmployeeCode,
+          },
+        },
+        order: [['employeeCode', 'DESC']],
+      });
+  
+      res.json({ previousUserCreation });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  },
+  
+  getNextNavigation: async (req, res) => {
+    try {
+      const { currentEmployeeCode } = req.params;
+  
+      const nextUserCreation = await UserCreation.findOne({
+        where: {
+          employeeCode: {
+            [Op.gt]: currentEmployeeCode,
+          },
+        },
+        order: [['employeeCode', 'ASC']],
+      });
+  
+      res.json({ nextUserCreation });
+    } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Internal server error' });
     }
   },
