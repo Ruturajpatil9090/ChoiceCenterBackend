@@ -92,6 +92,14 @@ const EmployeeData = sequelize.define('salaryData', {
     type: DataTypes.INTEGER, 
 
   },
+  MonthlyLateMinutes: {
+    type: DataTypes.INTEGER, 
+
+  },
+  CountOfDaysLateMonth: {
+    type: DataTypes.INTEGER, 
+
+  },
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,

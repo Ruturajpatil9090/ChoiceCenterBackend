@@ -131,7 +131,9 @@ const employeeDataController = {
         EmployeeHours:item.EmployeeHours,
         Late:item.Late,
         MonthlyOff:item.MonthlyOff,
-        MonthlySundayOff:item.MonthlySundayOff
+        MonthlySundayOff:item.MonthlySundayOff,
+        MonthlyLateMinutes:item.MonthlyLateMinutes,
+        CountOfDaysLateMonth:item.CountOfDaysLateMonth
       }));
   
       console.log('+++++', bulkData);
